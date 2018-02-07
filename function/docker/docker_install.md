@@ -1,4 +1,3 @@
-'''
 docker的安装
 ubuntu上面的安装
 # step 1: 安装必要的一些系统工具
@@ -46,22 +45,17 @@ sudo service docker start
 #   Available Packages
 # Step2 : 安装指定版本的Docker-CE: (VERSION 例如上面的 17.03.0.ce.1-1.el7.centos)
 # sudo yum -y install docker-ce-[VERSION]
-'''
-'''
 docker的升级
 对于使用脚本来安装的升级很简单，参见官方文档
 If you installed Docker using the convenience script, you should upgrade Docker using your package manager directly.
 所以升级的话我们只需要使用apt-get/yum来升级即可
-’‘’
 docker的卸载
 sudo apt-get remove docker docker-engine
 卸载Docker后,/var/lib/docker/目录下会保留原Docker的镜像,网络,存储卷等文件. 如果需要全新安装Docker,需要删除/var/lib/docker/目录
 rm -fr /var/lib/docker/
 
-'''
 docker的加速器的使用
 可以借助阿里云的，也可以借助其他公司的，具体的可以参考其他文档，不在详细写
-'''
 ----------------
 action
 安装好了docker之后默认的存储路径为/var/lib/docker
@@ -76,4 +70,3 @@ $ vi /etc/docker/daemon.json
 
 $ systemctl daemon-reload
 $ systemctl restart docker
---------i---------
