@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
+
+
+'''
+检查docker容器存活，并且报警发送到dingding群
+'''
+
 import docker
 import subprocess
 import json
@@ -27,9 +33,9 @@ class container(object):
         return ip
 if __name__ == '__main__':
 
-    webhook = "https://oapi.dingtalk.com/robot/send?access_token=262648106feebb848e2eae4b126f4408fda269d29c92c2647b4b13fb1b0bc553"
+    webhook = "https://oapi.dingtalk.com/robot/send?access_token=262648106feebb848e2eae4b126f44iddddd08fdwera269d29c92c2647b4b13fb1b0bc553"
     # 用户手机号列表
-    at_mobiles = [15854228252]
+    at_mobiles = [1585422xxxx]
     # 初始化机器人小丁
     xiaoding = DingtalkChatbot(webhook)
     obj = container()
