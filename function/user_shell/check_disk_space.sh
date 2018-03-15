@@ -1,4 +1,3 @@
-root@master:~# cat disk.sh 
 #!/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 ignore="Filesystem|iso9660"
