@@ -1,0 +1,20 @@
+version: "3"
+services:
+    mysql:
+      image: mysql:5.7
+      volumes:
+        - /data/mysql57:/var/lib/mysql
+        - /etc/localtime:/etc/localtime
+        - /data/mysqlconf:/etc/mysql/conf.d
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_USER: root
+        MYSQL_PASSWORD: 123456
+        MYSQL_ROOT_PASSWORD: 123456
+      networks:
+        - docker_connection
+
+
+
+#运行前首先需要在/data/mysqlconf目录下放好my.cnf文件,不然启动会报错

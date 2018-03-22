@@ -1,0 +1,17 @@
+version: "3"
+services:
+    nginx:
+      image: nginx
+      container_name: nginx_container
+      restart: always
+      volumes:
+        - /data/docker/nginx-front/conf/conf.d:/etc/nginx/conf.d
+        - /data/docker/nginx-front/conf/nginx.conf:/etc/nginx/nginx.conf
+        - /etc/localtime:/etc/localtime
+      ports:
+        - "80:80"
+       
+
+
+
+#使用运行之前首先将nginx.conf放到/data/docker/nginx-front/conf目录下 
