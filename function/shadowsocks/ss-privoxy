@@ -1,0 +1,58 @@
+#!/bin/bash
+
+
+success_fail(){
+   local rev
+   rev=$?
+   if [ $? -eq 0 ];then
+   echo -e "\033[41;36m ss-privoxy $1 successful \033[0m" 
+   else
+   echo -e "\033[41;36m ss-privoxy $1 fail \033[0m"
+   fi
+}
+
+case $1 in
+start)
+    set -o pipefail
+    nohup sslocal -c /etc/ss-local.json < /dev/null &>> /var/log/ss-local.log &
+    /etc/init.d/privoxy start
+    set +o pipefail
+    success_fail $1
+    ;;
+stop)
+    set -o pipefail
+    /etc/init.d/privoxy stop
+    pkill sslocal
+    set +o pipefail
+    success_fail $1
+    ;;
+restart)
+    set -o pipefail
+    /etc/init.d/privoxy restart
+    pkill sslocal
+    nohup sslocal -c /etc/ss-local.json < /dev/null &>> /var/log/ss-local.log &
+    set +o pipefail
+     success_fail $1
+    ;;
+reload)
+    set -o pipefail
+    /etc/init.d/privoxy force-reload
+    pkill sslocal
+    nohup sslocal -c /etc/ss-local.json < /dev/null &>> /var/log/ss-local.log &
+    set +o pipefail
+     success_fail $1
+    ;;
+status)
+     /etc/init.d/privoxy status
+     ss_local_num=`ps aux|grep ss-local|grep -v grep|wc -l`
+     if [ $ss_local_num -eq 1 ];then
+     echo "* shadowsocks is running"
+     else
+     echo "* shadowsocks is not running" 
+     fi
+    ;;
+*)
+    echo "usage: source $0 start|stop|reload|status"
+    exit 1
+    ;;
+esac
