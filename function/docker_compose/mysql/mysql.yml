@@ -15,4 +15,4 @@ services:
 
 
 
-#运行前首先需要在/data/mysqlconf目录下放好my.cnf文件,不然启动会报错
+#运行前首先需要在/data/mysqlconf目录下放好my.cnf默认的配置文件可以后期修改,不然启动会报错
