@@ -1,23 +1,11 @@
 #!/usr/bin/env python
 #_*_coding:utf-8_*_
-import os
 import time
+import sys,os 
 from datetime import datetime
-import sys
-import signal
 import re
 from follow import Follow
-from platform import node as gethostname
 import subprocess 
-
-
-#follow   类似于tail -f
-ALARM50XNUM=5
-ALARM40XNUM=30
-#check interval 30 seconds
-INTERVAL=30
-
-# log to be monitored
 print len(sys.argv)
 if len(sys.argv) <= 1:
     print "Usage : %s LOG" %sys.argv[0]
