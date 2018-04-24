@@ -53,3 +53,68 @@ Connection options:(控制连接的选项)
   -w, --no-password        never prompt for password永远不提示输入口令
   -W, --password           force password prompt (should happen automatically)强制口令提示 (自动)
 ···
+3 postgresql的使用
+初次安装后，默认生成一个名为postgres的数据库和一个名为postgres的数据库用户(管理员用户)。这里需要注意的是，同时还生成了一个名为postgres的Linux系统用户。
+
+基本使用
+
+添加新用户和新数据库
+登录
+psql -U postgres
+psql (9.5.2)
+Type "help" for help.
+ 
+postgres=#
+创建数据库用户dbuser并且设置密码
+CREATE USER dbuser WITH PASSWORD 'password';
+创建数据库并指定所有者为dbuser
+CREATE DATABASE exampledb WITH ENCODING 'UTF8' OWNER dbuser;
+将exampledb数据库的所有权限都赋予dbuser
+GRANT ALL PRIVILEGES ON DATABASE exampledb to dbuser;
+登录测试
+
+如果命令行登录的话，需要安装postgres-client客户端
+
+apt-get install postgresql-client-9.5 -y   #刚才已经添加过源了
+连接
+
+#psql -U username -d dbname -h ip -p port
+psql -U dbuser -d exampledb -h 192.168.100.137 -p 5432
+其他操作
+
+\h：查看SQL命令的解释，比如\h select。
+\?：查看psql命令列表。
+\l：列出所有数据库。
+\c [database_name]：连接其他数据库。
+\d：列出当前数据库的所有表格。
+\d [table_name]：列出某一张表格的结构。
+\du：列出所有用户。
+\e：打开文本编辑器。
+\conninfo：列出当前数据库和连接的信息。
+\password :设置密码
+\q 退出
+4 数据库操作 
+基本的数据库操作，就是使用一般的SQL语言。
+
+创建新表
+CREATE TABLE user_tbl(name VARCHAR(20), signup_date DATE);
+插入数据
+INSERT INTO user_tbl(name, signup_date) VALUES('lisi','20180104')
+选择记录
+SELECT * FROM user_tbl;
+更新数据
+UPDATE user_tbl set name='liwu'where name='lisi';
+删除记录
+DELETE FROM user_tbl WHERE name='lisi';
+添加栏位
+ALTER TABLE user_tbl ADD email VARCHAR(40);
+更新结构
+ALTER TABLE user_tbl ALTER COLUMN signup_date SET NOT NULL;
+更名栏位
+ALTER TABLE user_tbl RENAME COLUMN signup_date TO signup;
+删除栏位
+ALTER TABLE user_tbl DROP COLUMN email;
+表格更名
+ALTER TABLE user_tbl RENAME TO backup_tbl;
+删除表格
+DROP TABLE IF EXISTS backup_tbl;
