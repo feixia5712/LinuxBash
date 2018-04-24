@@ -1,0 +1,55 @@
+#####postgres的使用
+
+···
+
+备份使用pg_dump参数，可以使用pg_dump --help查看帮助，主要参数说明如下
+General options:(一般选项)
+  -f, --file=FILENAME          output file or directory name导出后保存的文件名
+  -F, --format=c|d|t|p         output file format (custom, directory, tar,导出文件的格式
+                               plain text (default))
+  -j, --jobs=NUM               use this many parallel jobs to dump并行数
+  -v, --verbose                verbose mode 详细模式
+  -V, --version                output version information, then exit输出版本信息, 然后退出
+  -Z, --compress=0-9           compression level for compressed formats被压缩格式的压缩级别
+  --lock-wait-timeout=TIMEOUT  fail after waiting TIMEOUT for a table lock在等待表锁超时后操作失败
+  -?, --help                   show this help, then exit显示此帮助信息, 然后退出
+Options controlling the output content:(控制输出的选项)
+  -a, --data-only              dump only the data, not the schema只导出数据，不包括模式
+  -b, --blobs                  include large objects in dump在转储中包括大对象
+  -c, --clean                  clean (drop) database objects before recreating在重新创建之前，先清除（删除）数据库对象
+  -C, --create                 include commands to create database in dump在转储中包括命令,以便创建数据库（包括建库语句，无需在导入之前先建数据库）
+  -E, --encoding=ENCODING      dump the data in encoding ENCODING转储以ENCODING形式编码的数据
+  -n, --schema=SCHEMA          dump the named schema(s) only只转储指定名称的模式
+  -N, --exclude-schema=SCHEMA  do NOT dump the named schema(s)不转储已命名的模式
+  -o, --oids                   include OIDs in dump在转储中包括 OID
+  -O, --no-owner               skip restoration of object ownership in在明文格式中, 忽略恢复对象所属者
+                              plain-text format
+  -s, --schema-only            dump only the schema, no data只转储模式, 不包括数据(不导出数据)
+  -S, --superuser=NAME         superuser user name to use in plain-text format在转储中, 指定的超级用户名
+  -t, --table=TABLE            dump the named table(s) only只转储指定名称的表
+  -T, --exclude-table=TABLE    do NOT dump the named table(s)只转储指定名称的表
+  -x, --no-privileges          do not dump privileges (grant/revoke)不要转储权限 (grant/revoke)
+  --binary-upgrade             for use by upgrade utilities only只能由升级工具使用
+  --column-inserts             dump data as INSERT commands with column names以带有列名的INSERT命令形式转储数据
+  --disable-dollar-quoting     disable dollar quoting, use SQL standard quoting取消美元 (符号) 引号, 使用 SQL 标准引号
+  --disable-triggers           disable triggers during data-only restore在只恢复数据的过程中禁用触发器
+  --exclude-table-data=TABLE   do NOT dump data for the named table(s)以INSERT命令，而不是COPY命令的形式转储数据
+  --inserts                    dump data as INSERT commands, rather than COPY
+  --no-security-labels         do not dump security label assignments
+  --no-synchronized-snapshots  do not use synchronized snapshots in parallel jobs
+  --no-tablespaces             do not dump tablespace assignments不转储表空间分配信息
+  --no-unlogged-table-data     do not dump unlogged table data
+  --quote-all-identifiers      quote all identifiers, even if not key words
+  --section=SECTION            dump named section (pre-data, data, or post-data)
+  --serializable-deferrable    wait until the dump can run without anomalies
+  --use-set-session-authorization
+                               use SET SESSION AUTHORIZATION commands instead of
+                               ALTER OWNER commands to set ownership
+Connection options:(控制连接的选项)
+  -d, --dbname=DBNAME      database to dump 数据库名
+  -h, --host=HOSTNAME      database server host or socket directory数据库服务器的主机名或套接字目录
+  -p, --port=PORT          database server port number数据库服务器的端口号
+  -U, --username=NAME      connect as specified database user以指定的数据库用户联接
+  -w, --no-password        never prompt for password永远不提示输入口令
+  -W, --password           force password prompt (should happen automatically)强制口令提示 (自动)
+···
