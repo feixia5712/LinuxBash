@@ -1,3 +1,4 @@
+有相关解释说明
 #!/usr/local/src/Python-2.7.15/python
 import string
 
