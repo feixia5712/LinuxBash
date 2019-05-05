@@ -11,6 +11,32 @@ expect {
 expect eof
 
 EOF
+
+第二种传入账号密码
+expect -c "
+     spawn ssh -p22 root@1.1.1.1
+     expect {
+          \"*(yes/no)\"
+               {
+               exp_send \"yes\";
+               expect \"password:\";
+                       {
+                          exp_send \"${pass}\r\"
+                          expect \"*#\" {send \"sh ${path}/install_agent.sh \r\"}
+                       
+                       }
+               }
+               
+           \"*password:\"
+                {
+                send \"${pass}\r\";
+                expect \"*#\" {send \"sh ${path}/install_agent.sh \r\"}
+                }
+            }
+       expect \"root*\" {send \"exit\r\"}
+       expect eof
+       send_user \"eof1\n"
+"
        
        
        
