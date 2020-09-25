@@ -1,0 +1,11 @@
+    在request请求的时候可以借助Fiddler5.0.20194.41348拦截请求查看请求参数
+    def import_zip(self,url):
+
+        file = {
+            "file":open("{}".format(self.filename_path),"rb"),
+            'Content-Disposition': 'form-data',
+            'Content-Type': 'application/x-zip-compressed',
+            'filename':'{}'.format(self.filename)
+            }
+        req = requests.request(self.method, url, files=file)
+        return req.text
