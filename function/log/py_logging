@@ -1,0 +1,9 @@
+def log_info():
+    filename="interface_test.log"
+    logger = logging.getLogger('msg')
+    logger.setLevel(logging.INFO)
+    fh=logging.FileHandler(filename=filename,mode="w",encoding="utf-8")
+    fmt=logging.Formatter(fmt="%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s", datefmt='%Y-%m-%d %H:%M:%S')
+    fh.setFormatter(fmt)
+    logger.addHandler(fh)
+    return logger
