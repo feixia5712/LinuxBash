@@ -17,3 +17,5 @@ default   1         47h
 jenkins   1         65m
 [root@k8s-master01 kubernetes]# 
 
+镜像参考：https://github.com/feixia5712/pipeline-jenkins-server
+
