@@ -17,5 +17,6 @@ default   1         47h
 jenkins   1         65m
 [root@k8s-master01 kubernetes]# 
 
+浏览器访问 nodeip:nodeport
 镜像参考：https://github.com/feixia5712/pipeline-jenkins-server
 
