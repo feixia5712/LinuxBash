@@ -19,17 +19,17 @@ d2 = d1.replace(" ","T")
 d2 += "+08:00"
 
 def email_send(data, title):
-    mail_host="smtp.263.net:465"  #设置服务器
-    mail_user="haj@jovision.com"    #用户名
-    mail_pass="HUanjia521..."   #口令 
+    mail_host="smtp.1263.net:465"  #设置服务器
+    mail_user="haj@xxx.com"    #用户名
+    mail_pass="xxxx..."   #口令 
      
      
-    sender = 'haj@jovision.com'
-    receivers = ['haj@jovision.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+    sender = 'haj@xxx.com'
+    receivers = ['haj@xxx.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
      
     message = MIMEText(data, 'plain', 'utf-8')
-    message['From'] = Header("邵阳高可用告警", 'utf-8')
-    message['To'] =  Header("邵阳高可用告警", 'utf-8')
+    message['From'] = Header("xxx告警", 'utf-8')
+    message['To'] =  Header("xxx告警", 'utf-8')
      
     subject = title
     message['Subject'] = Header(subject, 'utf-8')
@@ -63,7 +63,7 @@ def bytes2json(data_bytes):
 
 def send_alert(data):
     #token = os.getenv('ROBOT_TOKEN')
-    token = '75e034b550c6af6ed358e8ae4225ec587484885851820705a735b75816318fa6'
+    token = 'xxxxxx51820705a735b75816318fa6'
     if not token:
         print('you must set ROBOT_TOKEN env')
         return
@@ -108,7 +108,7 @@ def send_alert(data):
         }
         header = {"Content-Type": "application/json"}
         print(send_data_json)     
-        monitor_url = "http://127.0.0.1:9090/v3/event/message/insert"
+        #monitor_url = "http://127.0.0.1:9090/v3/event/message/insert"
         req = requests.post(monitor_url, json.dumps(send_data_json), headers=header)
         print (req.text)
 
