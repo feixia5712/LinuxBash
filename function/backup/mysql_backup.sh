@@ -106,3 +106,6 @@ need_clean=$(find ${mysql_backup_dir} -mtime +${save_days} -not -name $0 -exec l
 
     fi
 
+
+//排除某些数据库不备份
+mysql -uroot -p -e "show databases"|grep -Ev "Database|information_schema|mysql|test|jkhw_db"|xargs mysqldump -uroot -p --databases > mysql_dump.sql
