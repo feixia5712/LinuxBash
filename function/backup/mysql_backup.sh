@@ -110,3 +110,10 @@ need_clean=$(find ${mysql_backup_dir} -mtime +${save_days} -not -name $0 -exec l
 //排除某些数据库不备份
 mysql -uroot -p -e "show databases"|grep -Ev "Database|information_schema|mysql|test|jkhw_db"|xargs mysqldump -uroot -p --databases > mysql_dump.sql
 ${mysql_bin_mysql} -h${mysql_host} -P${mysql_port} -u${mysql_username} -p${mysql_password} -e "show databases"|grep -Ev "Database|information_schema|mysql|test|jvs_*"|xargs ${mysql_bin_dump} --host=${mysql_host} --port=${mysql_port} --user=${mysql_username} --password=${mysql_password} --routines --events --triggers --single-transaction --flush-logs --ignore-table=mysql.event --databases> mysql_dump.sql
+全部数据库备份
+```
+${mysql_bin_dump} --host=${mysql_host} --port=${mysql_port} --user=${mysql_username} --password=${mysql_password}\
+        --routines --events --triggers --single-transaction --flush-logs \
+        --master-data=2  --flush-privileges  --databases --all-databases |& \
+        gzip >${mysql_backup_dir}/${date_format_type_dir}/backup-${date_format_type_file}.sql.gz
+```
